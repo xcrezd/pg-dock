@@ -1,0 +1,36 @@
+version: "2.1"
+services:
+    pg-dock-main:
+      env_file: pg-dock-conf-${PG_DOCK_NODE}/env/main
+      container_name: pg-dock
+      image: icrezd/pg-dock-base
+      restart: on-failure
+      network_mode: "host"
+      volumes:
+        - /etc/hosts:/etc/hosts
+        - /opt/pg-dock/data:/var/lib/postgresql/data
+        - /opt/pg-dock/logs:/var/log/supervisor
+
+        - /opt/pg-dock/scripts/manage:/etc/scripts/manage
+
+        - /opt/pg-dock/scripts/config/tests:/etc/scripts/config/tests
+        - /opt/pg-dock/scripts/config/failover:/etc/scripts/config/failover
+
+        - /opt/pg-dock/scripts/helpers/repmgr.sql:/docker-entrypoint-initdb.d/repmgr.sql
+        - /opt/pg-dock/scripts/helpers/supervisord.conf:/etc/supervisor/supervisord.conf
+        - /opt/pg-dock/scripts/helpers/failover.sh:/etc/scripts/helpers/failover.sh
+        - /opt/pg-dock/scripts/helpers/hosts.sh:/etc/scripts/helpers/hosts.sh:rw
+
+        - /opt/pg-dock/scripts/config/postgres/postgresql.conf:/etc/postgresql/9.6/main/postgresql.conf
+        - /opt/pg-dock/scripts/config/postgres/pg_hba.conf:/etc/postgresql/9.6/main/pg_hba.conf
+        - /opt/pg-dock/scripts/config/initdb/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+        - /opt/pg-dock/scripts/config/repmgr/repmgr.conf:/etc/repmgr.conf
+        - /opt/pg-dock/scripts/config/ssh/authorized_keys:/home/postgres/.ssh/authorized_keys
+        - /opt/pg-dock/scripts/config/ssh/id_rsa:/home/postgres/.ssh/id_rsa
+        - /opt/pg-dock/scripts/config/ssh/config:/home/postgres/.ssh/config
+        - /opt/pg-dock/scripts/config/sshd/sshd_config:/etc/ssh/sshd_config
+    pg-dock-backup:
+      env_file: pg-dock-conf-${PG_DOCK_NODE}/env/backup
+      container_name: pg-dock-backup
+      image: schickling/postgres-backup-s3
+      restart: on-failure
