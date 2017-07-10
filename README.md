@@ -1,4 +1,4 @@
-# pg-dock-utils
+# pg-dock
 
 ## Dockerizing postgres cluster with repmgr.
 
