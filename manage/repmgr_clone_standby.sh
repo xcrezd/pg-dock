@@ -8,7 +8,7 @@ set -e
 
 rm -rf /var/lib/postgresql/data/*
 repmgr \
-	-h pg-dock-$PG_DOCK_FROM \
+	-h $PG_DOCK_FROM \
 	-U repmgr \
 	-d repmgr \
 	-D /var/lib/postgresql/data \

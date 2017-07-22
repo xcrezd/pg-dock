@@ -19,7 +19,7 @@ services:
         - /opt/pg-dock/scripts/helpers/repmgr.sql:/docker-entrypoint-initdb.d/repmgr.sql
         - /opt/pg-dock/scripts/helpers/supervisord.conf:/etc/supervisor/supervisord.conf
         - /opt/pg-dock/scripts/helpers/failover.sh:/etc/scripts/helpers/failover.sh
-        - /opt/pg-dock/scripts/helpers/hosts.sh:/etc/scripts/helpers/hosts.sh:rw
+        - /opt/pg-dock/scripts/helpers/hosts.sh:/etc/scripts/helpers/hosts.sh
 
         - /opt/pg-dock/scripts/config/postgres/postgresql.conf:/etc/postgresql/9.6/main/postgresql.conf
         - /opt/pg-dock/scripts/config/postgres/pg_hba.conf:/etc/postgresql/9.6/main/pg_hba.conf
