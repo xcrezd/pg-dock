@@ -2,5 +2,5 @@
 set -e
 
 echo "running failover"
-bash config/failover/failover.sh
 repmgr standby promote
+bash config/failover/failover.sh

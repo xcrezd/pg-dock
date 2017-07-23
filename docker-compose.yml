@@ -34,3 +34,4 @@ services:
       container_name: pg-dock-backup
       image: schickling/postgres-backup-s3
       restart: on-failure
+      network_mode: "host"
