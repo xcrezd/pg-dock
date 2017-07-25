@@ -1,9 +1,9 @@
 FROM busybox
 
 ARG NODE
-RUN mkdir /etc/scripts_temp
-COPY helpers /etc/scripts_temp/helpers
-COPY pg-dock-conf-${NODE} /etc/scripts_temp/config
-COPY manage  /etc/scripts_temp/manage
-WORKDIR /etc/scripts_temp
-CMD cp -R * /etc/scripts && chown -R 5432:5432 /etc/scripts
+RUN mkdir -p /etc/temp/scripts
+COPY helpers /etc/temp/scripts/helpers
+COPY pg-dock-conf-${NODE} /etc/temp/scripts/config
+COPY manage  /etc/temp/scripts/manage
+WORKDIR /etc/temp/
+CMD sh scripts/helpers/update_config.sh scripts /etc && chown -R 5432:5432 /etc/scripts
