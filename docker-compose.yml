@@ -1,6 +1,6 @@
 version: "2.1"
 services:
-    pg-dock-main:
+    pg-dock:
       env_file: pg-dock-conf-${PG_DOCK_NODE}/env/main
       container_name: pg-dock
       image: icrezd/pg-dock-base

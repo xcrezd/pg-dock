@@ -16,6 +16,13 @@ do
 		mkdir -p $DIR
 	fi
 	
-	echo "updating $DEST/$file"
-	cat $file > $DEST/$file
+	if [ -f "$DEST/$file" ]
+	then
+		echo "updating $DEST/$file"
+		cat $file > $DEST/$file
+
+	else
+		echo "cp $DEST/$file"
+		cp -f $file $DEST/$file
+	fi
 done
