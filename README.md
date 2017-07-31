@@ -9,4 +9,5 @@
  - Manage and deploy configuration versions.
  - Batteries included: connection pooler, logrotate, daily s3 backup.
 
-# How to soon...
+# How to
+[RU] https://habrahabr.ru/post/334484
