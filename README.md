@@ -11,4 +11,5 @@
 
 # How to
 [EN] https://medium.com/@xcrezd/dockerize-postgres-cluster-with-repmgr-18573250d92e
+
 [RU] https://habrahabr.ru/post/334484
