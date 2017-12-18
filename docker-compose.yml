@@ -1,7 +1,9 @@
 version: "2.1"
 services:
     pg-dock:
-      env_file: pg-dock-conf-${PG_DOCK_NODE}/env/main
+      env_file: 
+        - pg-dock-conf-${PG_DOCK_NODE}/env/main
+        - pg-dock-conf-${PG_DOCK_NODE}/env/wale
       container_name: pg-dock
       image: icrezd/pg-dock-base
       restart: on-failure
@@ -16,6 +18,7 @@ services:
         - /opt/pg-dock/scripts/config/tests:/etc/scripts/config/tests
         - /opt/pg-dock/scripts/config/failover:/etc/scripts/config/failover
 
+        - /opt/pg-dock/scripts/helpers/setup-wale.sh:/etc/scripts/helpers/setup-wale.sh
         - /opt/pg-dock/scripts/helpers/repmgr.sql:/docker-entrypoint-initdb.d/repmgr.sql
         - /opt/pg-dock/scripts/helpers/supervisord.conf:/etc/supervisor/supervisord.conf
         - /opt/pg-dock/scripts/helpers/failover.sh:/etc/scripts/helpers/failover.sh
@@ -29,9 +32,3 @@ services:
         - /opt/pg-dock/scripts/config/ssh/id_rsa:/home/postgres/.ssh/id_rsa
         - /opt/pg-dock/scripts/config/ssh/config:/home/postgres/.ssh/config
         - /opt/pg-dock/scripts/config/sshd/sshd_config:/etc/ssh/sshd_config
-    pg-dock-backup:
-      env_file: pg-dock-conf-${PG_DOCK_NODE}/env/backup
-      container_name: pg-dock-backup
-      image: schickling/postgres-backup-s3
-      restart: on-failure
-      network_mode: "host"
