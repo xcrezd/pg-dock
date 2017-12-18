@@ -4,9 +4,12 @@
 
 ### Features:
 
- - Run postgres cluster with replication.
+ - Run postgres cluster with master-slave replication.
  - Configuration ready templates.
  - Manage and deploy configuration versions.
- - Batteries included: connection pooler, logrotate, daily s3 backup.
+ - Batteries included: logrotate, daily s3 backup.
 
-# How to soon...
+# How to
+[EN] https://medium.com/@xcrezd/dockerize-postgres-cluster-with-repmgr-18573250d92e
+
+[RU] https://habrahabr.ru/post/334484
