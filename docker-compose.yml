@@ -5,7 +5,7 @@ services:
         - pg-dock-conf-${PG_DOCK_NODE}/env/main
         - pg-dock-conf-${PG_DOCK_NODE}/env/wale
       container_name: pg-dock
-      image: icrezd/pg-dock-base
+      image: icrezd/pg-dock-base:v2
       restart: on-failure
       network_mode: "host"
       volumes:
