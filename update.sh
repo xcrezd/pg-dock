@@ -6,4 +6,4 @@ set -e
 
 
 echo "Updating config files at host machine"
-docker run --rm -it -v /opt/pg-dock/scripts:/etc/scripts ${PG_DOCK_CONF_IMAGE}
+docker run --rm -t -v /opt/pg-dock/scripts:/etc/scripts ${PG_DOCK_CONF_IMAGE}
