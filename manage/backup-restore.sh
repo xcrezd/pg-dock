@@ -11,6 +11,7 @@ restore_command = 'envdir /etc/wal-e.d/env /usr/local/bin/wal-e wal-fetch "%f" "
 # You can specify this value with exact time. This will be useful if
 # you have incident and you want to recover to a few moments before.
 # recovery_target_time = '2016-06-02 06:18:00'
+recovery_target_timeline = latest
 EOF
 
 supervisorctl start foo:postgres foo:repmgrd
