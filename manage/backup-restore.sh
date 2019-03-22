@@ -2,7 +2,11 @@
 
 set -e
 
-supervisorctl stop foo:postgres foo:repmgrd
+supervisorctl stop foo:postgres
+
+if [ -z $STAGE ]; then
+	supervisorctl stop foo:repmgrd
+fi
 
 cat << EOF > /var/lib/postgresql/data/recovery.conf
 # The command that will be executed while recovering
@@ -14,4 +18,7 @@ restore_command = 'envdir /etc/wal-e.d/env /usr/local/bin/wal-e wal-fetch "%f" "
 recovery_target_timeline = latest
 EOF
 
-supervisorctl start foo:postgres foo:repmgrd
+supervisorctl start foo:postgres
+if [ -z $STAGE ]; then
+	supervisorctl start foo:repmgrd
+fi
